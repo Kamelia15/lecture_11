@@ -51,20 +51,46 @@ def pattern_search(sekvence, vzor):
     start_index = 0
     posledni_index = delka
 
-    for index, i in enumerate(sekvence):
-        if vzor == sekvence[index:index+delka]:
-            position.add(index + delka // 2)
-
+    while posledni_index < len(sekvence):
+        for idx in range(delka):
+            if vzor[idx] != sekvence[start_index + idx]:
+                break
+        else:
+            position.add(start_index + delka // 2)
+        start_index += 1
+        posledni_index += 1
 
     return position
+
+def binary_search(seq,number):
+    konec = len(seq) - 1
+    start = 0
+    while start <= konec:
+        middle = (start + konec) // 2
+        if number < seq[middle]:
+            konec = middle - 1
+        elif number > seq[middle]:
+            start = middle + 1
+        else:
+            return middle
+
+
+    return None
+
+
+
 
 def main():
     file = "sequential.json"
     s = read_data(file, "unordered_numbers")
     r = linear_search(s, hledane_cislo=0)
+
     s_2 = read_data(file, "dna_sequence")
     p = pattern_search(s_2,"ATA")
-    print(p)
+
+    s_3 = read_data(file, "ordered_numbers")
+    b = binary_search(s_3,number=13)
+    print(b)
 
 
 if __name__ == '__main__':
