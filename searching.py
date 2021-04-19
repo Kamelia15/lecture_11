@@ -44,14 +44,28 @@ def linear_search(s,hledane_cislo):
 
     return dict
 
+
+def pattern_search(sekvence, vzor):
+    delka = len(vzor)
+    position = set()
+    start_index = 0
+    posledni_index = delka
+
+    for index, i in enumerate(sekvence):
+        if vzor == sekvence[index:index+delka]:
+            position.add(index + delka // 2)
+
+
+    return position
+
 def main():
     file = "sequential.json"
     s = read_data(file, "unordered_numbers")
-    # print(s)
-    #
-    # pass
-    r = linear_search(s, hledane_cislo= 0 )
-    print(r)
+    r = linear_search(s, hledane_cislo=0)
+    s_2 = read_data(file, "dna_sequence")
+    p = pattern_search(s_2,"ATA")
+    print(p)
+
 
 if __name__ == '__main__':
     main()
