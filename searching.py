@@ -27,13 +27,31 @@ def read_data(file_name, field):
     s = slovniky[field]
     return s
 
+
+def linear_search(s,hledane_cislo):
+    index = []
+    count = 0
+    for position, a in enumerate(s):
+        if a == hledane_cislo:
+            index.append(position)
+            count += 1
+
+    dict ={
+        "position": index,
+        "count": count
+
+    }
+
+    return dict
+
 def main():
     file = "sequential.json"
     s = read_data(file, "unordered_numbers")
-    print(s)
-
-    pass
-
+    # print(s)
+    #
+    # pass
+    r = linear_search(s, hledane_cislo= 0 )
+    print(r)
 
 if __name__ == '__main__':
     main()
